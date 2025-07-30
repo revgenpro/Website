@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="100" fill="#DBEAFE"/>
+  <circle cx="100" cy="80" r="40" fill="#7C3AED"/>
+  <path d="M100 130 Q60 130 60 180 L140 180 Q140 130 100 130 Z" fill="#7C3AED"/>
+  <circle cx="80" cy="75" r="8" fill="white"/>
+  <circle cx="120" cy="75" r="8" fill="white"/>
+  <path d="M80 100 Q100 120 120 100" stroke="white" stroke-width="3" fill="none"/>
+</svg>
