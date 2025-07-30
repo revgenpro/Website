@@ -10,27 +10,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Smooth Scrolling for Navigation Links
-    const scrollLinks = document.querySelectorAll('a[href^="#"]');
+    // Smooth Scrolling for In-Page Navigation Links
+    const scrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
     
     scrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
+            // Only prevent default for links that start with # and are on the same page
+            const targetId = this.getAttribute('href');
             
+            // Check if this is an in-page anchor link (doesn't contain .html)
+            if (!targetId.includes('.html')) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                }
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Handle mobile menu for all navigation links
+    const allNavLinks = document.querySelectorAll('.nav-links a');
+    
+    allNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
             // Close mobile menu if open
             if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
-            }
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
             }
         });
     });
